@@ -1,0 +1,52 @@
+import os
+
+tarefas = []
+tarefas_refazer = []
+
+
+def desfazer(tarefas, tarefas_refazer):
+    if not tarefas:
+        print()
+        print('Nada a desfazer')
+        return
+    
+    tarefa = tarefas.pop()
+    tarefas_refazer.append(tarefa)
+
+
+def refazer(tarefas, tarefas_refazer):
+    if not tarefas_refazer:
+        print()
+        print('Nada a fazer') 
+        return
+
+    tarefa = tarefas_refazer.pop()
+    tarefas.append(tarefa)  
+
+def adicionar(tarefa, tarefas):
+    tarefas.append(tarefa)  
+
+
+def listar(tarefas):
+    print()    
+    print('TAREFAS:')
+    print(*tarefas, sep='\n')
+    print()
+
+
+while True:
+    print('Comandos: listar, desfazer, refazer')
+    tarefa = input('Digite uma tarefa ou comando:')
+
+    if tarefa == 'desfazer':
+        desfazer(tarefas, tarefas_refazer)
+        listar(tarefas)
+        continue
+    elif tarefa == 'listar':
+        listar(tarefas)
+    elif tarefa == 'clear':
+        os.system('clear')
+    else:
+        adicionar(tarefa, tarefas)
+        listar(tarefas)
+        continue
